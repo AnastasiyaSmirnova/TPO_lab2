@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="109.41176470588238" y="79.0">LN</node>
+    <node x="0.0" y="158.0">LOG10</node>
+    <node x="188.41176470588238" y="79.0">CSC</node>
+    <node x="147.41666666666669" y="316.0">MainFunction</node>
+    <node x="222.86764705882354" y="237.0">TrigonometricFunction</node>
+    <node x="30.867647058823536" y="237.0">LogarithmicFunction</node>
+    <node x="295.28431372549016" y="79.0">COS</node>
+    <node x="99.0" y="158.0">LOG2</node>
+    <node x="295.28431372549016" y="158.0">SEC</node>
+    <node x="381.2843137254902" y="158.0">CTG</node>
+    <node x="261.11764705882354" y="0.0">SIN</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="MainFunction" target="TrigonometricFunction">
+      <point x="31.49999999999997" y="-14.5" />
+      <point x="241.91666666666666" y="291.0" />
+      <point x="315.36764705882354" y="291.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="CTG" target="SIN">
+      <point x="16.5" y="-14.5" />
+      <point x="430.7843137254902" y="49.0" />
+      <point x="318.86764705882354" y="49.0" />
+      <point x="24.75" y="14.5" />
+    </edge>
+    <edge source="TrigonometricFunction" target="CTG">
+      <point x="74.0" y="-14.5" />
+      <point x="389.36764705882354" y="212.0" />
+      <point x="414.2843137254902" y="212.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="LogarithmicFunction" target="LOG2">
+      <point x="0.0" y="-14.5" />
+      <point x="116.86764705882354" y="212.0" />
+      <point x="135.0" y="212.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="TrigonometricFunction" target="SIN">
+      <point x="-37.0" y="-14.5" />
+      <point x="278.36764705882354" y="212.0" />
+      <point x="264.9117647058824" y="212.0" />
+      <point x="264.9117647058824" y="59.0" />
+      <point x="285.86764705882354" y="59.0" />
+      <point x="-8.25" y="14.5" />
+    </edge>
+    <edge source="CSC" target="SIN">
+      <point x="0.0" y="-14.5" />
+      <point x="221.41176470588238" y="49.0" />
+      <point x="269.36764705882354" y="49.0" />
+      <point x="-24.75" y="14.5" />
+    </edge>
+    <edge source="LOG2" target="LN">
+      <point x="0.0" y="-14.5" />
+      <point x="135.0" y="133.0" />
+      <point x="138.91176470588238" y="133.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="LogarithmicFunction" target="LOG10">
+      <point x="-57.33333333333334" y="-14.5" />
+      <point x="59.53431372549019" y="212.0" />
+      <point x="39.5" y="212.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="TrigonometricFunction" target="SEC">
+      <point x="37.0" y="-14.5" />
+      <point x="352.36764705882354" y="212.0" />
+      <point x="328.28431372549016" y="212.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="TrigonometricFunction" target="CSC">
+      <point x="-74.0" y="-14.5" />
+      <point x="241.36764705882354" y="212.0" />
+      <point x="221.41176470588235" y="212.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="CTG" target="COS">
+      <point x="-16.5" y="-14.5" />
+      <point x="397.7843137254902" y="133.0" />
+      <point x="350.28431372549016" y="133.0" />
+      <point x="22.0" y="14.5" />
+    </edge>
+    <edge source="COS" target="SIN">
+      <point x="0.0" y="-14.5" />
+      <point x="328.28431372549016" y="59.0" />
+      <point x="302.36764705882354" y="59.0" />
+      <point x="8.25" y="14.5" />
+    </edge>
+    <edge source="SEC" target="COS">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="TrigonometricFunction" target="COS">
+      <point x="0.0" y="-14.5" />
+      <point x="315.36764705882354" y="212.0" />
+      <point x="284.78431372549016" y="212.0" />
+      <point x="284.78431372549016" y="133.0" />
+      <point x="306.28431372549016" y="133.0" />
+      <point x="-22.0" y="14.5" />
+    </edge>
+    <edge source="LOG10" target="LN">
+      <point x="0.0" y="-14.5" />
+      <point x="39.5" y="133.0" />
+      <point x="119.2450980392157" y="133.0" />
+      <point x="-19.66666666666667" y="14.5" />
+    </edge>
+    <edge source="MainFunction" target="LogarithmicFunction">
+      <point x="-31.50000000000003" y="-14.5" />
+      <point x="178.91666666666666" y="291.0" />
+      <point x="116.86764705882354" y="291.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="LogarithmicFunction" target="LN">
+      <point x="57.33333333333334" y="-14.5" />
+      <point x="174.20098039215688" y="212.0" />
+      <point x="183.91666666666666" y="212.0" />
+      <point x="183.91666666666666" y="133.0" />
+      <point x="158.57843137254906" y="133.0" />
+      <point x="19.66666666666667" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9361934477379095" x="290.4999999999999" y="266.2656223962673" />
+  <SelectedNodes>
+    <node>LogarithmicFunction</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

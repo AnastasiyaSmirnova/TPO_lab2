@@ -1,14 +1,11 @@
-import javax.jnlp.DownloadService;
+import javax.swing.text.TabableView;
 
 import static java.lang.Math.*;
 
-public class BasicFunctions {
+public class SIN {
     private static final double eps = 10E-6;
 
-    public BasicFunctions() {
-    }
-
-    public int factorial(int n) {
+    private static int factorial(int n) {
         int f = 1;
         for (int i = 1; i <= n; i++) {
             f *= i;
@@ -16,7 +13,16 @@ public class BasicFunctions {
         return f;
     }
 
-    public double sin(double x) {
+
+    /**
+     * sin (Tailor)
+     * cos -> sin
+     * cot -> sin, cos
+     * csc -> sin
+     * sec -> cos
+     */
+    public static double sin(double x) { // D(x)=(-inf; +inf), E(x) = [-1;1]
+        x = x % (2 * PI);
         double res = 0,
                 prevRes;
         int n = 0;
@@ -27,5 +33,4 @@ public class BasicFunctions {
         } while (Double.isFinite(res) && abs(res - prevRes) > eps);
         return Double.isFinite(res) ? res : prevRes;
     }
-
 }
