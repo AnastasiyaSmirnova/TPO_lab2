@@ -9,6 +9,6 @@ public class Main {
 //        functions.cos(8 * Math.PI / 3);
 //        functions.cos(-4 * Math.PI);
 
-        System.out.println(functions.cos(17 * PI / 4));
+//        System.out.println(functions.cos(17 * PI / 4));
     }
 }

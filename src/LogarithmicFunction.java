@@ -5,7 +5,7 @@ public class LogarithmicFunction {
      */
     public static double logarithmicFunction(double x) throws IllegalArgumentException {
         return Math.pow(
-                Math.pow(LN.ln(x * x), 2) / (LOG10.log10(x) - LOG2.log2(x)) +
+                Math.pow(Math.pow(LN.ln(x), 2), 2) / (LOG10.log10(x) - LOG2.log2(x)) +
                         (LOG2.log2(x) - (LOG10.log10(x) - LN.ln(x)))
                 , 3);
     }
