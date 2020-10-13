@@ -12,7 +12,7 @@ public class CTG {
 
     public double ctg(double x) throws IllegalArgumentException {
         if (abs(x % (0.5 * PI)) < 10E-8) { // x !=  PI/2 +/- PI*k
-            throw new IllegalArgumentException("ctg");
+            throw new IllegalArgumentException("ctg",x);
         }
         return cosModule.cos(x) / sinModule.sin(x);
     }
