@@ -1,7 +1,7 @@
 import static java.lang.Math.*;
 
 public class SIN {
-    private static final double eps = 10E-6;
+    private static final double eps = 0.1;
 
     private static int factorial(int n) {
         int f = 1;
@@ -14,20 +14,19 @@ public class SIN {
     /**
      * sin (Tailor)
      * cos -> sin
-     * cot -> sin, cos
+     * ctg -> sin, cos
      * csc -> sin
      * sec -> cos
      */
-    public double sin(double x) throws IllegalArgumentException { // D(x)=(-inf; +inf), E(x) = [-1;1]
+    private static double sin_f(double x, double diff, double res, int n) {
+        if (abs(diff) > eps) {
+            sin_f(x, diff * (-x * x / (2.0 * n * (2.0 * n + 1.0))), res + diff, n + 1);
+        }
+        return res;
+    }
+
+    public double sin(double x) { // D(x)=(-inf; +inf), E(x) = [-1;1]
         x = x % (2 * PI);
-        double res = 0,
-                prevRes;
-        int n = 0;
-        do {
-            prevRes = res;
-            res += pow(-1, n) * pow(x, 2 * n + 1) * pow(factorial(2 * n + 1), -1);
-            n++;
-        } while (Double.isFinite(res) && abs(res - prevRes) > eps);
-        return Double.isFinite(res) ? res : prevRes;
+        return sin_f(x, x, 0, 1);
     }
 }
