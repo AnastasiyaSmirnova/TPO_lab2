@@ -1,4 +1,5 @@
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
 public class LN {
     private static final double eps = 10E-6;

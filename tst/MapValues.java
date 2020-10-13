@@ -102,7 +102,7 @@ public class MapValues {
     private static void fillRightPoints() {
         double eX = 0.000528,
                 bX = 0.0128226,
-                oX = 1,
+                oX = 1.0,
                 cX = 77.96395,
                 dX = 1891.717504;
 
@@ -146,7 +146,6 @@ public class MapValues {
         rightPoints.put("d2", dX + eps);
 
         rightPoints.put("di", 3000.0);
-
     }
 
     public static double left(double x) {
@@ -207,7 +206,7 @@ public class MapValues {
 
     private static void fillLogMap() {
         for (String key : rightPoints.keySet()) {
-            log.put(key, Math.log10(rightPoints.get(key)));
+            log.put(key, Math.log(rightPoints.get(key)));
         }
     }
 
@@ -225,14 +224,19 @@ public class MapValues {
 
 
     public static void main(String[] args) {
+//        System.out.println(left(Double.NEGATIVE_INFINITY));
+//        System.out.println(right(Double.POSITIVE_INFINITY));
         fillAllData();
 //        printLogarithm();
 //        printTrigomon();
-        printSin();
-        printCos();
-        printCtg();
-        printSEC();
-        printCSC();
+//        printSin();
+//        printCos();
+//        printCtg();
+//        printSEC();
+//        printCSC();
+        printLn();
+        printLog2();
+        printLog10();
     }
 
     public static void printLogarithm() {
@@ -240,6 +244,30 @@ public class MapValues {
         Arrays.sort(keys);
         for (Object key : keys) {
             System.out.format("Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, logarithm.get(key.toString()));
+        }
+    }
+
+    public static void printLn() {
+        Object[] keys = rightPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(lnModule.ln(MapValues.rightPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, log.get(key.toString()));
+        }
+    }
+
+    public static void printLog2() {
+        Object[] keys = rightPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(log2Module.lоg2(MapValues.rightPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, log2.get(key.toString()));
+        }
+    }
+
+    public static void printLog10() {
+        Object[] keys = rightPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(log10Module.log10(MapValues.rightPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, log10.get(key.toString()));
         }
     }
 

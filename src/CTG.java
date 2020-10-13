@@ -1,3 +1,6 @@
+import static java.lang.Math.PI;
+import static java.lang.Math.abs;
+
 public class CTG {
     private SIN sinModule;
     private COS cosModule;
@@ -8,7 +11,7 @@ public class CTG {
     }
 
     public double ctg(double x) throws IllegalArgumentException {
-        if ((Math.abs(x % 2 * Math.PI) - Math.PI / 2) < 10E-3) {
+        if (abs(x % (0.5 * PI)) < 10E-8) { // x !=  PI/2 +/- PI*k
             throw new IllegalArgumentException("ctg");
         }
         return cosModule.cos(x) / sinModule.sin(x);

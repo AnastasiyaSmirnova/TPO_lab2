@@ -1,103 +1,26 @@
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
-public class FirstLevelTests {
-    private static final double eps = 10E-5;
+public class FinalTest {
+    private static final double eps = 10E-3;
     private static MainFunction mainFunction;
 
     @BeforeClass
-    public static void initStubs() throws IllegalArgumentException {
-        LogarithmicFunction logarithmicFunctionModule = Mockito.mock(LogarithmicFunction.class);
-        TrigonometricFunction trigonometricFunctionModule = Mockito.mock(TrigonometricFunction.class);
-
+    public static void initStubs() {
         MapValues.fillAllData();
-        // 28 points
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("a"))).thenReturn(278177.259729);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("ae"))).thenReturn(485643.491369);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("b"))).thenReturn(-198.433312);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("b1"))).thenReturn(-198.433310);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("b2"))).thenReturn(-198.433314);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("bo1"))).thenReturn(-18.024031);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("bo2"))).thenReturn(-2.490103);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("bo3"))).thenReturn(-0.183649);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("c"))).thenReturn(198.433316);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("c1"))).thenReturn(198.433316);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("c2"))).thenReturn(198.433316);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("cd1"))).thenReturn(58.638412);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("cd2"))).thenReturn(12.033626);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("cd3"))).thenReturn(1.129782);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("d"))).thenReturn(0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("d1"))).thenReturn(0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("d2"))).thenReturn(-0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("di"))).thenReturn(-8.310115);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("e"))).thenReturn(0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("e1"))).thenReturn(0.000002);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("e2"))).thenReturn(-0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("eb1"))).thenReturn(-126.256376);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("eb2"))).thenReturn(-178.097188);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("eb3"))).thenReturn(-194.839207);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("o"))).thenThrow(new IllegalArgumentException("logarithm"));
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("o1"))).thenReturn(-0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("o2"))).thenReturn(0.000000);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("oc1"))).thenReturn(131.159764);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("oc2"))).thenReturn(178.491656);
-        Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get("oc3"))).thenReturn(194.758566);
+        LN lnModule = new LN();
+        LOG2 log2Module = new LOG2(lnModule);
+        LOG10 log10Module = new LOG10(lnModule);
+        LogarithmicFunction logarithmicFunctionModule = new LogarithmicFunction(lnModule, log2Module, log10Module);
 
-        // 48 points
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("_0.5PI"))).thenThrow(new IllegalArgumentException("trigonom"));
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("_PI"))).thenThrow(new IllegalArgumentException("trigonom"));
-
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("a"))).thenReturn(65.224359);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("a_3PI"))).thenReturn(65.224359);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("a_4PI"))).thenReturn(65.224359);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("a_PI"))).thenReturn(65.224359);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("b"))).thenReturn(6.111106);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("b_3PI"))).thenReturn(6.111106);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("b_4PI"))).thenReturn(6.111106);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("b_PI"))).thenReturn(6.111106);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("c"))).thenReturn(2.297944);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("c_3PI"))).thenReturn(2.297944);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("c_4PI"))).thenReturn(2.297944);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("c_PI"))).thenReturn(2.297944);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("d"))).thenReturn(1.293337);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("d_3PI"))).thenReturn(1.293337);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("d_4PI"))).thenReturn(1.293337);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("d_PI"))).thenReturn(1.293337);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("e"))).thenReturn(0.868203);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("e_3PI"))).thenReturn(0.868203);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("e_4PI"))).thenReturn(0.868203);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("e_PI"))).thenReturn(0.868203);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("f"))).thenReturn(0.620043);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("f_3PI"))).thenReturn(0.620043);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("f_4PI"))).thenReturn(0.620043);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("f_PI"))).thenReturn(0.620043);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("g"))).thenReturn(1.459861);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("g_3PI"))).thenReturn(1.459861);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("g_4PI"))).thenReturn(1.459861);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("g_PI"))).thenReturn(1.459861);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("h"))).thenReturn(5.897743);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("h_3PI"))).thenReturn(5.897743);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("h_4PI"))).thenReturn(5.897743);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("h_PI"))).thenReturn(5.897743);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("i"))).thenReturn(999998000001.333400);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("i_3PI"))).thenReturn(999998002232.920000);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("i_4PI"))).thenReturn(999998002477.849000);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("i_PI"))).thenReturn(999997999966.706700);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o1"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o1_3PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o1_4PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o1_PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o2"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o2_3PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o2_4PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o2_PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o_3PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o_4PI"))).thenReturn(0.418588);
-        Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get("o_PI"))).thenReturn(0.418588);
+        SIN sinModule = new SIN();
+        COS cosModule = new COS(sinModule);
+        CTG ctgModule = new CTG(sinModule, cosModule);
+        CSC cscModule = new CSC(sinModule);
+        SEC secModule = new SEC(cosModule);
+        TrigonometricFunction trigonometricFunctionModule = new TrigonometricFunction(sinModule, cosModule, ctgModule, cscModule, secModule);
 
         mainFunction = new MainFunction(trigonometricFunctionModule, logarithmicFunctionModule);
     }
@@ -473,4 +396,3 @@ public class FirstLevelTests {
         mainFunction.function(Double.NaN);
     }
 }
-

@@ -11,7 +11,6 @@ public class SIN {
         return f;
     }
 
-
     /**
      * sin (Tailor)
      * cos -> sin
@@ -19,7 +18,7 @@ public class SIN {
      * csc -> sin
      * sec -> cos
      */
-    public double sin(double x) { // D(x)=(-inf; +inf), E(x) = [-1;1]
+    public double sin(double x) throws IllegalArgumentException { // D(x)=(-inf; +inf), E(x) = [-1;1]
         x = x % (2 * PI);
         double res = 0,
                 prevRes;

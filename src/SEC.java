@@ -6,7 +6,7 @@ public class SEC {
     }
 
     public double sec(double x) throws IllegalArgumentException {
-        if ((Math.abs(x % Math.PI) - 0) < 10E-3) {
+        if (Math.abs(x % Math.PI) < 10E-8) {
             throw new IllegalArgumentException("sec");
         }
         return 1 / cosModule.cos(x);
