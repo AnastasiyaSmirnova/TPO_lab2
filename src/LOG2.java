@@ -6,6 +6,6 @@ public class LOG2 {
     }
 
     public double log2(double x) throws IllegalArgumentException {
-        return lnModule.ln(x) / lnModule.ln(2);
+        return lnModule.ln(x) * Math.pow(lnModule.ln(2), -1);
     }
 }

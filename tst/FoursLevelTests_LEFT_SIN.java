@@ -4,7 +4,7 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
-public class ThirdLevelTests_LEFT_SIN {
+public class FoursLevelTests_LEFT_SIN {
     private static final double eps = 10E-1;
     private static MainFunction mainFunction;
 
