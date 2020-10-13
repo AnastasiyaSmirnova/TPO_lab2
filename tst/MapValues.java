@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static java.lang.Math.*;
@@ -55,7 +56,7 @@ public class MapValues {
         leftPoints.put("b_PI", -2.5 - PI);
         leftPoints.put("c_PI", -2.0 - PI);
         leftPoints.put("d_PI", -1.7 - PI);
-        leftPoints.put("e_PI", -2.5 - PI);
+        leftPoints.put("e_PI", -1.5 - PI);
         leftPoints.put("o1_PI", min - eps - PI);
         leftPoints.put("o_PI", min - PI);
         leftPoints.put("o2_PI", min + eps - PI);
@@ -68,7 +69,7 @@ public class MapValues {
         leftPoints.put("b_3PI", -2.5 - 3 * PI);
         leftPoints.put("c_3PI", -2.0 - 3 * PI);
         leftPoints.put("d_3PI", -1.7 - 3 * PI);
-        leftPoints.put("e_3PI", -2.5 - 3 * PI);
+        leftPoints.put("e_3PI", -1.5 - 3 * PI);
         leftPoints.put("o1_3PI", min - eps - 3 * PI);
         leftPoints.put("o_3PI", min - 3 * PI);
         leftPoints.put("o2_3PI", min + eps - 3 * PI);
@@ -81,7 +82,7 @@ public class MapValues {
         leftPoints.put("b_4PI", -2.5 - 4 * PI);
         leftPoints.put("c_4PI", -2.0 - 4 * PI);
         leftPoints.put("d_4PI", -1.7 - 4 * PI);
-        leftPoints.put("e_4PI", -2.5 - 4 * PI);
+        leftPoints.put("e_4PI", -1.5 - 4 * PI);
         leftPoints.put("o1_4PI", min - eps - 4 * PI);
         leftPoints.put("o_4PI", min - 4 * PI);
         leftPoints.put("o2_4PI", min + eps - 4 * PI);
@@ -91,6 +92,7 @@ public class MapValues {
         leftPoints.put("i_4PI", -eps - 4 * PI);
 
         leftPoints.put("_0.5PI", -0.5 * PI);
+        leftPoints.put("_PI", -PI);
     }
 
     public static double getPointsBetweenTwo(double start, double end, double n) {
@@ -123,9 +125,9 @@ public class MapValues {
         rightPoints.put("bo2", getPointsBetweenTwo(bX, oX, 2));
         rightPoints.put("bo3", getPointsBetweenTwo(bX, oX, 3));
 
-        rightPoints.put("ro1", oX - eps);
-        rightPoints.put("roExc", oX); // incorrect value -> expected exception
-        rightPoints.put("ro2", oX + eps);
+        rightPoints.put("o1", oX - eps);
+        rightPoints.put("o", oX); // incorrect value -> expected exception
+        rightPoints.put("o2", oX + eps);
 
         rightPoints.put("oc1", getPointsBetweenTwo(oX, cX, 1));
         rightPoints.put("oc2", getPointsBetweenTwo(oX, cX, 2));
@@ -163,49 +165,37 @@ public class MapValues {
 
     private static void fillTrigonomMap() {
         for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                triganom.put(key, left(leftPoints.get(key)));
-            }
+            triganom.put(key, left(leftPoints.get(key)));
         }
     }
 
     private static void fillSinMap() {
         for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                sin.put(key, Math.sin(leftPoints.get(key)));
-            }
+            sin.put(key, Math.sin(leftPoints.get(key)));
         }
     }
 
     private static void fillCosMap() {
         for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                cos.put(key, Math.cos(leftPoints.get(key)));
-            }
+            cos.put(key, Math.cos(leftPoints.get(key)));
         }
     }
 
     private static void fillSecMap() {
         for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                sec.put(key, 1 / Math.cos(leftPoints.get(key)));
-            }
+            sec.put(key, 1 / Math.cos(leftPoints.get(key)));
         }
     }
 
     private static void fillCscMap() {
         for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                csc.put(key, 1 / Math.sin(leftPoints.get(key)));
-            }
+            csc.put(key, 1 / Math.sin(leftPoints.get(key)));
         }
     }
 
     private static void fillCtgMap() {
         for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                ctg.put(key, Math.cos(leftPoints.get(key)) / Math.sin(leftPoints.get(key)));
-            }
+            ctg.put(key, Math.cos(leftPoints.get(key)) / Math.sin(leftPoints.get(key)));
         }
     }
 
@@ -236,25 +226,71 @@ public class MapValues {
 
     public static void main(String[] args) {
         fillAllData();
-        printLogarithm();
-        printTrigomon();
+//        printLogarithm();
+//        printTrigomon();
+        printSin();
+        printCos();
+        printCtg();
+        printSEC();
+        printCSC();
     }
 
     public static void printLogarithm() {
-        logarithm.forEach((key, value) -> {
-            System.out.format("Mockito.when(logarithmicFunctionModule.logarithmicFunction(%.6f)).thenReturn(%.6f);%n", rightPoints.get(key), value);
-        });
+        Object[] keys = rightPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(logarithmicFunctionModule.logarithmicFunction(MapValues.rightPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, logarithm.get(key.toString()));
+        }
     }
 
     public static void printTrigomon() {
-        for (String key : leftPoints.keySet()) {
-            if (!key.contains("PI")) {
-                String x = String.format("%f", leftPoints.get(key));
-                String f = String.format("%.6f", triganom.get(key));
-                System.out.println("Mockito.when(trigonometricFunctionModule.trigonometricFunction(" + x + ")).thenReturn(" + f + ");");
-            }
+        Object[] keys = leftPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(trigonometricFunctionModule.trigonometricFunction(MapValues.leftPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, triganom.get(key.toString()));
         }
     }
+
+    public static void printSin() {
+        Object[] keys = leftPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(sinModule.sin(MapValues.leftPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, sin.get(key.toString()));
+        }
+    }
+
+    public static void printCos() {
+        Object[] keys = leftPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(cosModule.cos(MapValues.leftPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, cos.get(key.toString()));
+        }
+    }
+
+    public static void printCtg() {
+        Object[] keys = leftPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(ctgModule.ctg(MapValues.leftPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, ctg.get(key.toString()));
+        }
+    }
+
+    public static void printCSC() {
+        Object[] keys = leftPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(cscModule.csc(MapValues.leftPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, csc.get(key.toString()));
+        }
+    }
+
+    public static void printSEC() {
+        Object[] keys = leftPoints.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key : keys) {
+            System.out.format("Mockito.when(secModule.sec(MapValues.leftPoints.get(\"%s\"))).thenReturn(%.6f);%n", key, sec.get(key.toString()));
+        }
+    }
+
 
 //        Mockito.when(trigonometricFunctionModule.trigonometricFunction(-3.000000)).thenReturn(65.224359);
 //        Mockito.when(trigonometricFunctionModule.trigonometricFunction(-2.500000)).thenReturn(6.111106);

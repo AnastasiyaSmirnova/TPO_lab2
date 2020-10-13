@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
+        
 //        HashMap<Double, Double> trignom = new HashMap<Double, Double>();
 //        trignom.put(-3.0, 65.22435860660299);
 //        trignom.put(-2.5, 6.111106160752125);

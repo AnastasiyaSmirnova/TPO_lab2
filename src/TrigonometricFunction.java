@@ -19,6 +19,6 @@ public class TrigonometricFunction {
      */
     public double trigonometricFunction(double x) throws IllegalArgumentException {
         return ((secModule.sec(x) / secModule.sec(x)) * secModule.sec(x) - secModule.sec(x)) / (ctgModule.ctg(x) + sinModule.sin(x)) +
-                (Math.pow(cscModule.csc(x) + Math.pow(cosModule.cos(x), 2), 2));
+                (Math.pow(cscModule.csc(x) + cosModule.cos(x), 2));
     }
 }
