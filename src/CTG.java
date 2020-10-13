@@ -1,8 +1,16 @@
 public class CTG {
-    public static double ctg(double x) throws IllegalArgumentException {
+    private SIN sinModule;
+    private COS cosModule;
+
+    public CTG(SIN sin, COS cos) {
+        this.sinModule = sin;
+        this.cosModule = cos;
+    }
+
+    public double ctg(double x) throws IllegalArgumentException {
         if ((Math.abs(x % 2 * Math.PI) - Math.PI / 2) < 10E-3) {
             throw new IllegalArgumentException("ctg");
         }
-        return COS.cos(x) / SIN.sin(x);
+        return cosModule.cos(x) / sinModule.sin(x);
     }
 }

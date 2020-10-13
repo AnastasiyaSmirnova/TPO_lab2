@@ -8,7 +8,7 @@ public class LN {
      * log2 -> ln
      * log10 -> ln
      */
-    public static double ln(double x) throws IllegalArgumentException {
+    public double ln(double x) throws IllegalArgumentException {
         if (x <= 0 || x == 1) {
             throw new IllegalArgumentException("ln");
         }

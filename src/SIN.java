@@ -1,5 +1,3 @@
-import javax.swing.text.TabableView;
-
 import static java.lang.Math.*;
 
 public class SIN {
@@ -21,7 +19,7 @@ public class SIN {
      * csc -> sin
      * sec -> cos
      */
-    public static double sin(double x) { // D(x)=(-inf; +inf), E(x) = [-1;1]
+    public double sin(double x) { // D(x)=(-inf; +inf), E(x) = [-1;1]
         x = x % (2 * PI);
         double res = 0,
                 prevRes;

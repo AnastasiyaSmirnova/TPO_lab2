@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.text.DecimalFormat;
 
 import static java.lang.Math.*;
 
@@ -45,16 +45,24 @@ public class Work {
                 3);
     }
 
+    private static void print(String name, double x, double f) {
+        DecimalFormat df = new DecimalFormat("");
+        String fx = String.format("%.6f", x);
+        String ff = String.format("%.6f", f);
+        System.out.println("Mockito.when(" + name + "(" + fx + ")).thenReturn(" + ff + ");");
+    }
+
     public static void left() {
 
-        System.out.println("HashMap<Double, Double> trignom = new HashMap<Double, Double>();");
-        sb.append("{\"trig_f\":{\n");
+//        System.out.println("HashMap<Double, Double> trignom = new HashMap<Double, Double>();");
+//        sb.append("{\"trig_f\":{\n");
         for (double v : trig_x) {
             c++;
-            System.out.println("trignom.put(" + v + "," + f1(v) + ");");
-            sb.append("\"").append(v).append("\":").append(f1(v)).append(",\n");
+            print("trigonometricFunctionModule.trigonometricFunction", v, f1(v));
+//            System.out.println("trignom.put(" + v + "," + f1(v) + ");");
+//            sb.append("\"").append(v).append("\":").append(f1(v)).append(",\n");
         }
-        sb.replace(sb.lastIndexOf(","), sb.lastIndexOf(",") + 1, "},\n");
+//        sb.replace(sb.lastIndexOf(","), sb.lastIndexOf(",") + 1, "},\n");
     }
 
     public static double getPoints(double start, double end, double n) {
@@ -62,89 +70,92 @@ public class Work {
     }
 
     public static void right() {
-        System.out.println("HashMap<Double, Double> logarithm = new HashMap<Double, Double>();");
-        sb.append("\"log_f\":{\n");
+//        System.out.println("HashMap<Double, Double> logarithm = new HashMap<Double, Double>();");
+//        sb.append("\"log_f\":{\n");
         for (double v : log_x) {
             c++;
-            System.out.println("logarithm.put(" + v + "," + f2(v) + ");");
-            sb.append("\"").append(v).append("\":").append(f2(v)).append(",\n");
+            print("logarithmicFunctionModule.logarithmicFunction", v, f2(v));
+//            sb.append("\"").append(v).append("\":").append(f2(v)).append(",\n");
         }
-        sb.replace(sb.lastIndexOf(","), sb.lastIndexOf(",") + 1, "}}");
+//        sb.replace(sb.lastIndexOf(","), sb.lastIndexOf(",") + 1, "}}");
     }
 
     public static void sin() {
-        System.out.println("HashMap<Double, Double> sin = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> sin = new HashMap<Double, Double>();");
         for (double v : trig_x) {
-            System.out.println("sin.put(" + v + "," + Math.sin(v) + ");");
+            print("sinModule.sin", v, Math.sin(v));
         }
     }
 
     public static void cos() {
-        System.out.println("HashMap<Double, Double> cos = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> cos = new HashMap<Double, Double>();");
         for (double v : trig_x) {
-            System.out.println("cos.put(" + v + "," + Math.cos(v) + ");");
+            print("cosModule.cos", v, Math.cos(v));
         }
     }
 
     public static void ctg() {
-        System.out.println("HashMap<Double, Double> ctg = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> ctg = new HashMap<Double, Double>();");
         for (double v : trig_x) {
-            System.out.println("ctg.put(" + v + "," + Math.cos(v) / Math.sin(v) + ");");
+            print("ctgModule.ctg", v, Math.cos(v) / Math.sin(v));
         }
     }
 
     public static void csc() {
-        System.out.println("HashMap<Double, Double> csc = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> csc = new HashMap<Double, Double>();");
         for (double v : trig_x) {
-            System.out.println("csc.put(" + v + "," + 1 / Math.sin(v) + ");");
+            print("cscModule.csc", v, 1 / Math.sin(v));
         }
     }
 
     public static void sec() {
-        System.out.println("HashMap<Double, Double> sec = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> sec = new HashMap<Double, Double>();");
         for (double v : trig_x) {
-            System.out.println("sec.put(" + v + "," + 1 / Math.cos(v) + ");");
+            print("secModule.sec", v, 1 / Math.cos(v));
+//            System.out.println("sec.put(" + v + "," + 1 / Math.cos(v) + ");");
         }
     }
 
     public static void ln() {
-        System.out.println("HashMap<Double, Double> ln = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> ln = new HashMap<Double, Double>();");
         for (double v : log_x) {
-            System.out.println("log.put(" + v + "," + 1 / log(v) + ");");
+//            todo: fix 1/log(v)
+            print("lnModule.ln", v, Math.log(v));
+//            System.out.println("log.put(" + v + "," + 1 / log(v) + ");");
         }
     }
 
     public static void log_10() {
-        System.out.println("HashMap<Double, Double> log10 = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> log10 = new HashMap<Double, Double>();");
         for (double v : log_x) {
-            System.out.println("log10.put(" + v + "," + 1 / log10(v) + ");");
+            print("log10Module.log10", v, Math.log10(v));
+//            System.out.println("log10.put(" + v + "," + 1 / log10(v) + ");");
         }
     }
 
     public static void log_2() {
-        System.out.println("HashMap<Double, Double> log2 = new HashMap<Double, Double>();");
+//        System.out.println("HashMap<Double, Double> log2 = new HashMap<Double, Double>();");
         for (double v : log_x) {
-            System.out.println("log2.put(" + v + "," + 1 / log2(v) + ");");
+            print("log2Module.log2", v, log2(v));
+//            System.out.println("log2.put(" + v + "," + log2(v) + ");");
         }
     }
 
     public static void main(String[] args) throws IllegalArgumentException {
         System.out.println(eps);
-        sb = new StringBuilder();
-        // negative - trigonom
-//        left();
-//        // positive - log
-//        right();
-//
-//        sin();
-//        cos();
-//        ctg();
-//        csc();
+//        sb = new StringBuilder();
+
+        left();
+        right();
+        sin();
+        cos();
+        ctg();
+        csc();
         sec();
 
         ln();
-//        log_2();
-//        log_10();
+        log_2();
+        log_10();
 
 //        System.out.println(sb.toString());
     }

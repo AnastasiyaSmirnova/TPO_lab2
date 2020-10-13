@@ -1,6 +1,11 @@
 public class LOG10 {
+    private LN lnModule;
 
-    public static double log10(double x) throws IllegalArgumentException {
-        return LN.ln(x) / LN.ln(10);
+    public LOG10(LN lnModule) {
+        this.lnModule = lnModule;
+    }
+
+    public double log10(double x) throws IllegalArgumentException {
+        return lnModule.ln(x) / lnModule.ln(10);
     }
 }
