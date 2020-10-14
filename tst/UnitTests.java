@@ -60,4 +60,10 @@ public class UnitTests {
     public void ln() throws IllegalArgumentException {
         assertEquals("ln", Math.log(456), lnModule.ln(456), eps);
     }
+
+    @Test
+    public void cos() {
+        COS cos = new COS(sinModule);
+        assertEquals("cos", Math.cos(300), cos.cos(300), eps);
+    }
 }
