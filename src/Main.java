@@ -70,6 +70,5 @@ public class Main {
         } catch (FileNotFoundException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }
