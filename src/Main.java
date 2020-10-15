@@ -21,44 +21,45 @@ public class Main {
 
         MainFunction mainFunction = new MainFunction(trigonometricFunctionModule, logarithmicFunctionModule);
 
-        try (PrintWriter writer = new PrintWriter(new File("./out/table.csv"))) {
-            StringBuilder sb = new StringBuilder("x,sin,cos,ctg,csc,sec,trig_f,ln,log2,log10,logarithm,main\n");
+        try (PrintWriter writer = new PrintWriter(new File("./inf/table.csv"))) {
+            String separator = ";";
+            StringBuilder sb = new StringBuilder("x;sin;cos;ctg;csc;sec;trig_f;ln;log2;log10;logarithm;main\n");
             double x0 = -10,
-                    xN = 10,
-                    step = 1;
+                    xN = 2000,
+                    step = 0.1;
             boolean flag;
             for (double x = x0; x <= xN; x += step) {
-                sb.append(x).append(",");
+                sb.append(x).append(separator);
                 flag = true;
-                sb.append(sinModule.sin(x)).append(",");
-                sb.append(cosModule.cos(x)).append(",");
+                sb.append(sinModule.sin(x)).append(separator);
+                sb.append(cosModule.cos(x)).append(separator);
 
                 if (abs(x % (0.5 * PI)) < 10E-8) { // no ctg, csc where */sin(x) => x!= Pi/2+k*Pi
                     sb.append(",,");
                     flag = false;
                 } else {
-                    sb.append(ctgModule.ctg(x)).append(",");
-                    sb.append(cscModule.csc(x)).append(",");
+                    sb.append(ctgModule.ctg(x)).append(separator);
+                    sb.append(cscModule.csc(x)).append(separator);
                 }
                 if (abs(x % PI) < 10E-8) {
                     sb.append(",");
                     flag = false;
                 } else {
-                    sb.append(secModule.sec(x)).append(",");
+                    sb.append(secModule.sec(x)).append(separator);
                 }
                 if (flag) {
-                    sb.append(trigonometricFunctionModule.trigonometricFunction(x)).append(",");
+                    sb.append(trigonometricFunctionModule.trigonometricFunction(x)).append(separator);
                 } else {
-                    sb.append(",");
+                    sb.append(separator);
                 }
 
                 if (x > 0 && x != 1) {
-                    sb.append(lnModule.ln(x)).append(",");
-                    sb.append(log2Module.log2(x)).append(",");
-                    sb.append(log10Module.log10(x)).append(",");
-                    sb.append(logarithmicFunctionModule.logarithmicFunction(x)).append(",");
+                    sb.append(lnModule.ln(x)).append(separator);
+                    sb.append(log2Module.log2(x)).append(separator);
+                    sb.append(log10Module.log10(x)).append(separator);
+                    sb.append(logarithmicFunctionModule.logarithmicFunction(x)).append(separator);
                 } else {
-                    sb.append(",,,,");
+                    sb.append(separator).append(separator).append(separator).append(separator);
                 }
                 if (x > 0 && x != 1 || x <= 0 && flag) {
                     sb.append(mainFunction.function(x));
